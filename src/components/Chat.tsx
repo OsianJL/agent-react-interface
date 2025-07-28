@@ -26,11 +26,17 @@ export default function Chat() {
       });
     
       const data = await res.json();
-    
+
+      const content =
+        typeof data.response === 'string'
+          ? data.response
+          : data.response?.output || JSON.stringify(data.response);
+
       const agentMessage: Message = {
         role: 'agent',
-        content: data.response || '⚠️ Sin respuesta del agente',
+        content,
       };
+
       setMessages((prev) => [...prev, agentMessage]);
     } catch (err) {
       setMessages((prev) => [
