@@ -19,12 +19,12 @@ export default function Chat() {
     setInput('');
 
     try {
-      const res = await fetch('http://localhost:8000/chat', {
+      const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: input }),
       });
-    
+
       const data = await res.json();
 
       const content =
@@ -47,7 +47,7 @@ export default function Chat() {
         },
       ]);
     }
-    
+
   };
 
   useEffect(() => {
