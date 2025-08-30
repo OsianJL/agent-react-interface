@@ -14,6 +14,10 @@ export default function Chat() {
     e.preventDefault();
     if (!input.trim()) return;
 
+    // Debug: verificar la variable de entorno
+    console.log('API Base URL:', import.meta.env.VITE_API_BASE_URL);
+    console.log('Todas las variables:', import.meta.env);
+
     const userMessage: Message = { role: 'user', content: input };
     setMessages((prev) => [...prev, userMessage]);
     setInput('');
